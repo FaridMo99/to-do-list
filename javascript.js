@@ -10,10 +10,10 @@ let addTasks = document.querySelector(".add")
         const darkenForPopUp = document.querySelectorAll("nav, main, footer")
         const popUpQuestions = ["Datum:", "Uhrzeit:", "Aufgaben:"]
         let popUp = document.createElement("div")
+        document.body.appendChild(popUp)
 
         darkenForPopUp.forEach(element => element.style.opacity = "1%")
 
-        document.body.appendChild(popUp)
         popUp.innerHTML = `<form action="/submit" method="POST" style="display:flex; flex-direction:column; justify-content:space-around; align-items:center;">
                            <label for="dateInput">${popUpQuestions[0]}</label>
                            <input type="text" id="dateInput" name="dateInput" placeholder="z.b.01.01.1999" style="width:80%; color:black;">
@@ -61,23 +61,34 @@ themeChangeButton.addEventListener("click", () => {
 
 
 //function task cleared
-let clear = document.querySelectorAll(".clear")
+let clear = document.querySelectorAll(".clear");
 
-let taskBottom = document.querySelectorAll(".tasks")
+clear.forEach((button) => {
+    button.addEventListener("click", (event) => {
+        let firstParent = event.target.closest(".bottom");
+        let secondParent = firstParent?.parentElement;
 
-function clearTask() {
-    date.forEach((date) =>
-    date.textContent = ""
-    )
-    taskBottom.forEach((bottom) =>
-    bottom.textContent = ""
-    )
-}
+        if (secondParent) {
+            let topElements = secondParent.querySelectorAll('.top span');
+            topElements.forEach((element) => {
+                element.childNodes.forEach((child) => {
+                    if (child.nodeType === Node.TEXT_NODE) {
+                        child.textContent = "";
+                    }
+                });
+            });
 
-clear.forEach((button) => button.addEventListener("click", () => clearTask()))
-
-
-
+            let bottomElements = secondParent.querySelectorAll('.bottom .tasks');
+            bottomElements.forEach((element) => {
+                element.childNodes.forEach((child) => {
+                    if (child.nodeType === Node.TEXT_NODE) {
+                        child.textContent = ""; 
+                    }
+                });
+            });
+        }
+    });
+});
 
 
 

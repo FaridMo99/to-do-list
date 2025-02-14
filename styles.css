@@ -33,6 +33,9 @@ body {
     flex-direction: column;
 }
 
+button:hover {
+    cursor: pointer;
+}
 /* navbar */
 nav {
     width:100%;
