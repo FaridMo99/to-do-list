@@ -146,6 +146,7 @@ section>div {
     align-self: flex-end;
     margin-right: 2%;
     margin-bottom: 2%;
+
     circle, path{
     stroke:var(--third-color);
     }
@@ -154,17 +155,19 @@ section>div {
 
 .add {
     position:fixed;
-    bottom:5vh;
-    right:5vw;
-    z-index:1;
+    bottom:1vw;
+    right:1vw;
+    z-index:3;
 
     circle {
         fill:var(--third-color);
+        
         
     }
 
     line {
         stroke:var(--font-color);
+        
     }
 }
 
