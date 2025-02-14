@@ -16,19 +16,33 @@ addTasks.addEventListener("click", () => addingTasks())
 //function for theme change
 let bgColor = document.querySelectorAll(".top, nav, .innerButtonThemeChange, circle, path")
 let addColor = document.querySelector(".addCircle")
+
+let isCyan = false
+
 const themeChangeButton = document.querySelector(".themeChange")
 
-function themeChange(element) {
-    element.style.backgroundColor ="cyan"
-    element.style.stroke ="cyan"
+function themeChange(element, color) {
+    element.style.backgroundColor = color
+    element.style.stroke = color
 
 }
 
 themeChangeButton.addEventListener("click", () => {
-    addColor.style.fill = "cyan"
-    bgColor.forEach(element => {
-        themeChange(element);
-    })
+    if(!isCyan){
+        addColor.style.fill = "cyan"
+        isCyan = true
+        bgColor.forEach(element => {
+            themeChange(element, "cyan");
+        })
+    }
+
+    else {
+        isCyan = false
+        addColor.style.fill = ""
+        bgColor.forEach(element => {
+            themeChange(element, "");
+        })
+    }
 })
 
 
