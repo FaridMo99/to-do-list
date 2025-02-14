@@ -1,23 +1,43 @@
 // adding tasks
 let addTasks = document.querySelector(".add")
 
-function addingTasks(){
-const task = prompt("Welche Aufgabe?");
-const date = prompt("Datum");
-const time = prompt("Uhrzeit");
+    //pop-up Element
+    let date = document.querySelectorAll(".top")
+    let time = document.querySelectorAll(".time")
+    let tasks = document.querySelectorAll(".tasks")
 
-if (!task || !date || !time)
-    {return}
+    function popUpInput(){
 
-}
+        const darkenForPopUp = document.querySelectorAll("nav, main, footer")
+        darkenForPopUp.forEach(element => {
+            element.style.opacity = "1%"
+
+        })
+
+        let popUp = document.createElement("div")
+        document.body.appendChild(popUp)
+        popUp.innerHTML = `<form action="/submit" method="POST" style="display:flex; flex-direction:column; justify-content:space-around; align-items:center;">
+                           <label for="dateInput">Datum:</label>
+                           <input type="text" id="dateInput" name="dateInput" placeholder="z.b.01.01.1999" style="width:80%; color:black;">
+                           <button type="submit" style="background-color:var(--bg-color); border:1px solid var(--box-color); box-shadow:0 0 10px 1px var(--box-color); color:var(--font-color);">Senden</button>
+                           </form> ` 
+        popUp.style.cssText = "width:20%; height:20%; background-color:var(--bg-color); border:1px solid var(--box-color); border-radius:10px; box-shadow:0 0 10px 1px var(--box-color); color:var(--font-color); display:flex; justify-content:center; align-items:space-around; position:fixed; right:40%; top:40%; z-index:10;"
+
+
+        
+    }
+
+    function addingTasks(){
+        popUpInput()
+    }
 
 addTasks.addEventListener("click", () => addingTasks())
+
+
 
 //function for theme change
 let bgColor = document.querySelectorAll(".top, nav, .innerButtonThemeChange, circle, path")
 let addColor = document.querySelector(".addCircle")
-
-let isCyan = false
 
 const themeChangeButton = document.querySelector(".themeChange")
 
@@ -28,7 +48,7 @@ function themeChange(element, color) {
 }
 
 themeChangeButton.addEventListener("click", () => {
-    if(!isCyan){
+    if(addColor.style.fill != "cyan"){
         addColor.style.fill = "cyan"
         isCyan = true
         bgColor.forEach(element => {
@@ -37,7 +57,6 @@ themeChangeButton.addEventListener("click", () => {
     }
 
     else {
-        isCyan = false
         addColor.style.fill = ""
         bgColor.forEach(element => {
             themeChange(element, "");
@@ -49,12 +68,11 @@ themeChangeButton.addEventListener("click", () => {
 //function task cleared
 let clear = document.querySelectorAll(".clear")
 
-let taskHeader = document.querySelectorAll(".top")
 let taskBottom = document.querySelectorAll(".tasks")
 
 function clearTask() {
-    taskHeader.forEach((header) =>
-    header.textContent = ""
+    date.forEach((date) =>
+    date.textContent = ""
     )
     taskBottom.forEach((bottom) =>
     bottom.textContent = ""
@@ -62,3 +80,17 @@ function clearTask() {
 }
 
 clear.forEach((button) => button.addEventListener("click", () => clearTask()))
+
+
+
+
+
+
+
+
+
+
+
+//bugs to fix later
+    //when cyan checkmark doesnt turn white when hovering
+    //when popup visible background still interactive
