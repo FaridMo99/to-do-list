@@ -1,37 +1,19 @@
 // adding tasks
-let addTasks = document.querySelector(".add")
+let addTasksButton = document.querySelector("[data-open-modal]")
+let popUp = document.querySelector("[data-modal]")
+let closeButton = document.querySelector("[data-close-modal]")
 
-    //pop-up Element
-    let date = document.querySelectorAll(".top")
-    let time = document.querySelectorAll(".time")
-    let tasks = document.querySelectorAll(".tasks")
+    //open and close pop-up
+addTasksButton.addEventListener("click", () => {
+popUp.showModal()
+})
 
-    function popUpInput(){
-        const darkenForPopUp = document.querySelectorAll("nav, main, footer")
-        const popUpQuestions = ["Datum:", "Uhrzeit:", "Aufgaben:"]
-        let popUp = document.createElement("div")
-        document.body.appendChild(popUp)
-
-        darkenForPopUp.forEach(element => element.style.opacity = "1%")
-
-        popUp.innerHTML = `<form action="/submit" method="POST" style="display:flex; flex-direction:column; justify-content:space-around; align-items:center;">
-                           <label for="dateInput">${popUpQuestions[0]}</label>
-                           <input type="text" id="dateInput" name="dateInput" placeholder="z.b.01.01.1999" style="width:80%; color:black;">
-                           <button type="submit" style="background-color:var(--bg-color); border:1px solid var(--box-color); border-radius:5px; box-shadow:0 0 10px 1px var(--box-color); color:var(--font-color);">Senden</button>
-                           </form> ` 
-        popUp.style.cssText = "width:20%; height:20%; background-color:var(--bg-color); border:1px solid var(--box-color); border-radius:10px; box-shadow:0 0 10px 1px var(--box-color); color:var(--font-color); display:flex; justify-content:center; align-items:space-around; position:fixed; right:40%; top:40%; z-index:10;"
-    }
-
-    function addingTasks(){
-        popUpInput()
-    }
-
-addTasks.addEventListener("click", () => addingTasks())
-
-
+closeButton.addEventListener("click", () => {
+    popUp.close()
+})
 
 //function for theme change
-let bgColor = document.querySelectorAll(".top, nav, .innerButtonThemeChange, circle, path")
+let bgColor = document.querySelectorAll(".top, nav, .innerButtonThemeChange, .popUpInput, circle, path")
 let addColor = document.querySelector(".addCircle")
 
 const themeChangeButton = document.querySelector(".themeChange")
@@ -45,7 +27,7 @@ function themeChange(element, color) {
 themeChangeButton.addEventListener("click", () => {
     if(addColor.style.fill != "cyan"){
         addColor.style.fill = "cyan"
-        isCyan = true
+
         bgColor.forEach(element => {
             themeChange(element, "cyan");
         })
@@ -99,4 +81,12 @@ clear.forEach((button) => {
 
 //bugs to fix later
     //when cyan checkmark doesnt turn white when hovering
-    //when popup visible background still interactive
+    //themechange button accessible during popup
+    //input bordercolor dont change when cyan
+//functions to add
+    //a cancel popup with a button or clicking background
+    //if clicking on a task, should center it,grow and make it editable and clicking background should ask save changes or not and clicking on clear should still be possible 
+    //erledigt should be greyed out and only be accesible for removing(clear button should delete(x instead of cross) and should ask if youre sure)
+    //bevorstehend and heute should always show the closest date and time from top to bottom
+    //function in navbar that shows only erledigt, heute, bevorstehend
+    //connect to date and time API to make order of tasks

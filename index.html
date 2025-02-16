@@ -8,18 +8,22 @@
     <link rel="stylesheet" href="styles.css">
     <script src="javascript.js" defer></script>
 </head>
+
 <body>
 
-    <nav>
-        <h1>To-Do-Liste</h1>
-        <button class="themeChange" title="Change Color"><span class="innerButtonThemeChange"></span></button>
-    </nav>
-
-    <header></header>
+    <header>
+        <nav>
+            <h1>To-Do-Liste</h1>
+            <a class="done" href="">Done</a>
+            <a class="today" href="">Today</a>
+            <a class="soon" href="">Soon</a>
+            <button class="themeChange" title="Change Color"><span class="innerButtonThemeChange"></span></button>
+        </nav>
+    </header>
 
     <main>
         <section class="left">
-            <h2>Erledigt</h2>
+            <h2>Done</h2>
             <div>
                 <div class="top">
                     <span class="date">Datum</span>
@@ -66,8 +70,9 @@
                 </div>
             </div>
         </section>
+
         <section class="center">
-            <h2>Heute</h2>
+            <h2>Today</h2>
             <div>
                 <div class="top">
                     <span class="date">Datum</span>
@@ -114,8 +119,9 @@
                 </div>
             </div>
         </section>
+
         <section class="right">
-            <h2>Bevorstehend</h2>
+            <h2>Soon</h2>
             <div>
                 <div class="top">
                     <span class="date">Datum</span>
@@ -149,14 +155,24 @@
             <div class="invi">
             </div>
         </section>
+        <div class="line1"></div>
+        <div class="line2"></div>
     </main>
 
     <footer>
-        <svg class="add" width="10vw" height="10vw" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <svg data-open-modal class="add" width="10vw" height="10vw" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
             <circle class="addCircle" cx="50%" cy="50%" r="40"/>
             <line x1="50" y1="30" x2="50" y2="70" stroke-width="4" stroke-linecap="round"/>
             <line x1="30" y1="50" x2="70" y2="50" stroke-width="4" stroke-linecap="round"/>
         </svg>
+        <dialog data-modal class="popUp">
+            <button class="close" data-close-modal>X</button>
+            <form action="submit" method="post">
+                <label for="Date">Date:</label>
+                <input type="date" name="Date" id="date" required>
+                <button class="submit" type="submit">Enter</button>
+            </form>
+        </dialog>
     </footer>
 
 </body>
